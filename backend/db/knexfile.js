@@ -8,8 +8,8 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'invest_it',
-      user: 'Chandru',
-      password: 'Chandru@1807',
+      user: 'your db username',
+      password: 'your password',
       port: 5433
     },
     pool: {

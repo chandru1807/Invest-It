@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { RiMenu5Line } from "react-icons/ri";
 import { GiReceiveMoney } from "react-icons/gi";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const NavBar = () => {
   const [active, setActive] = useState(false);
@@ -9,6 +10,12 @@ const NavBar = () => {
   const handleClick = () => {
     setActive(!active);
   };
+  const { data: session } = useSession();
+  if (session) {
+    console.log("LOGGED IN");
+  } else {
+    console.log("NOT LOGGED IN");
+  }
 
   return (
     <>
@@ -43,9 +50,15 @@ const NavBar = () => {
             <Link href="/">
               <a className="navbar-link">Cryptos</a>
             </Link>
-            <Link href="/">
-              <a className="navbar-link">Login/Signup</a>
-            </Link>
+            {session ? (
+              <button className="navbar-link" onClick={() => signOut()}>
+                Logout
+              </button>
+            ) : (
+              <button className="navbar-link" onClick={() => signIn()}>
+                SignIn
+              </button>
+            )}
           </div>
         </div>
       </nav>

@@ -1,0 +1,26 @@
+{
+  "name": "invest-it",
+  "version": "1.0.0",
+  "description": "Investment tracker",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "migrate": "npx knex migrate:make init --migrations-directory db/migrations",
+    "migrate-l": "npx knex migrate:latest --knexfile db/knexfile.js",
+    "migrate-d": "npx knex migrate:rollback --knexfile db/knexfile.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.95.9",
+    "objection": "^2.2.15",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

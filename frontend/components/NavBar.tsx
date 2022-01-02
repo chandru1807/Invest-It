@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiMenu5Line } from "react-icons/ri";
 import { GiReceiveMoney } from "react-icons/gi";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const NavBar = () => {
   const [active, setActive] = useState(false);
+  const navBarClasses =
+    "fixed flex items-center flex-wrap bg-green-400 p-3 w-full";
 
   const handleClick = () => {
     setActive(!active);
@@ -17,9 +19,21 @@ const NavBar = () => {
     console.log("NOT LOGGED IN");
   }
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.onscroll = function () {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+  }, []);
+
   return (
     <>
-      <nav className="flex items-center flex-wrap bg-green-400 p-3 w-full">
+      <nav className={scrolled ? navBarClasses + " shadow-lg" : navBarClasses}>
         <Link href="/">
           <a className="inline-flex items-center p-2 mr-4 ">
             <GiReceiveMoney className="h-9 w-9 text-white mr-1"></GiReceiveMoney>
@@ -56,7 +70,7 @@ const NavBar = () => {
               </button>
             ) : (
               <button className="navbar-link" onClick={() => signIn()}>
-                SignIn
+                Log In/Sign Up
               </button>
             )}
           </div>

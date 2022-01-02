@@ -46,7 +46,7 @@ const MutualFundsLanding: React.FC<MutualFundsLandingProps> = ({
   };
   return (
     <>
-      <div className="md:w-4/5 md:m-auto">
+      <div className="md:w-4/5 md:mx-auto my-32">
         <div className="font-serif text-xl font-bold p-4">
           Invest in Mutual Funds
         </div>
